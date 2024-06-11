@@ -10,20 +10,23 @@ def navigate_steps(driver, lesson_id, initial_step_url, logger):
 
     while True:
         try:
-            test_cases = driver.find_elements(By.XPATH, "//div[contains(text(), 'Test case')]")
+            test_cases = driver.find_elements(By.XPATH,
+                                              "//div[@class='step-editor__header']/h2[contains(., 'Code Challenge') or contains(., 'Программирование')]")
             if test_cases:
                 logger.info("Шаг содержит код")
 
                 menu_button = WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable(
-                        (By.XPATH, "//button[@class='st-button_style_none step-editor__menu-toggler']"))
+                        (By.XPATH, "//button[@class='st-button_style_none step-editor__menu-toggler']")
+                    )
                 )
                 menu_button.click()
                 logger.info("Нажато на ...")
 
                 download_button = WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable(
-                        (By.XPATH, "//a[contains(@class, 'download-step') and contains(text(), 'Download step')]"))
+                        (By.XPATH, "//a[contains(@class, 'download-step') and (contains(text(), 'Download step') or contains(text(), 'Скачать шаг'))]")
+                    )
                 )
                 download_button.click()
                 logger.info("Нажали на кнопку скачивания шага")
