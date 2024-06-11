@@ -18,21 +18,25 @@
 
 2. Установите все зависимости, указанные в `requirements.txt`:
 
-   ```sh
-   pip install -r requirements.txt
-   ```
+```sh
+pip install -r requirements.txt
+```
 
-3. Убедитесь, что у вас установлен браузер Microsoft Edge и соответствующий WebDriver.
 
 ### Использование
 
-1. Запустите основной скрипт:
 
-   ```sh
-   python main.py
-   ```
+1. Запустите основной скрипт для скачивания шага на компьютер:
 
-2. Введите URL урока, email и пароль, когда появятся соответствующие запросы.
+```sh
+python main.py "https://stepik.org/lesson/1111/" "login@mail.ru" "my_passwors" --action download
+```
+
+2. Запустите основной скрипт для импорта шага с компьютера:
+
+```sh
+python main.py "https://stepik.org/lesson/1111/" "login@mail.ru" "my_passwors" --action import
+```
 
 
 ### main.py
