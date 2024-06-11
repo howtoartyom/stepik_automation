@@ -13,12 +13,14 @@ parser = argparse.ArgumentParser(description="Automation script for Stepik lesso
 parser.add_argument("lesson_url", type=str, help="URL of the lesson")
 parser.add_argument("login", type=str, help="Email for Stepik login")
 parser.add_argument("password", type=str, help="Password for Stepik login")
+parser.add_argument("--action", choices=["download", "import"], required=True, help="Action to perform on steps: download or import")
 
 args = parser.parse_args()
 
 # Инициализация ChromeDriver
 driver = webdriver.Chrome()
 driver.get(args.lesson_url)
+time.sleep(5)
 
 try:
     # Авторизация
@@ -32,7 +34,7 @@ try:
     lesson_id = initial_step_url.split('/')[4]
 
     # Навигация по шагам урока
-    navigate_steps(driver, lesson_id, initial_step_url, logger)
+    navigate_steps(driver, lesson_id, initial_step_url, logger, args.action)
 
 except Exception as e:
     logger.error(f"Появилась ошибка: {e}")
